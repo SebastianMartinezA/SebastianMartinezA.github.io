@@ -50,6 +50,10 @@
       width: 100%;
       margin-right: 0rem;
     }
+
+    @media screen and (min-width: 2000px) {
+      margin: 0 6rem;
+    }
   }
   
   .app__header-badge {
