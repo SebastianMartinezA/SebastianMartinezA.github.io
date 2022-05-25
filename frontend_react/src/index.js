@@ -23,7 +23,7 @@ i18n
       loadPath: '/assets/locales/{{Ing}}/translation.json',
     }, 
     react: { useSuspense: false },
-  });
+  })
 
 function App() {
   const { t } = useTranslation();
