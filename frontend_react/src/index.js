@@ -14,16 +14,16 @@ i18n
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
-    fallbackLng: "en",
+    fallbackLng: 'en',
     detection: {
         order: ['htmlTag', 'cookie', 'localStorage', 'path', 'subdomain'],
         caches: ['cookie'],
     },
     backend: {
-      loadPath: '/assets/locales/{{Ing}}/translation.json',
+      loadPath: '/assets/locales/{{lng}}/translation.json',
     }, 
     react: { useSuspense: false },
-  })
+  });
 
 function App() {
   const { t } = useTranslation();
