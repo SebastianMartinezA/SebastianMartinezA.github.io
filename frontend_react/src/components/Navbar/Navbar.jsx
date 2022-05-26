@@ -3,23 +3,25 @@ import { HiMenuAlt4, HiX } from 'react-icons/hi';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import { useTranslation } from "react-i18next";
 
 import { images } from '../../constants';
 import './Navbar.scss';
 
 const Navbar = () => {
 const [toggle, setToggle] = useState(false);
+const { t } = useTranslation();
 
   return (
     <nav className="app__navbar">
         <div className="app__navbar-logo">
-            <img src={images.logo} alt="logo" />
+            {t('nav_home')}
         </div>
         <ul className="app__navbar-links">
-          {['home', 'about', 'work', 'testimonials', 'skills', 'contact'].map((item) => (
+          {[t('nav_home'), t('nav_about'), t('nav_work'), t('nav_testimonials'), t('nav_skills'), t('nav_contact')].map((item) => (
             <li className="app__flex p-text" key={`link-${item}`}>
               <div />
-              <a href={`#${item}`}>{item}</a>
+              <a href={3}>{item}</a>
             </li>
           ))}
         </ul>

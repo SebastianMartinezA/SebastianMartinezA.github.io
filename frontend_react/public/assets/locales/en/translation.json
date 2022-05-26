@@ -1,3 +1,8 @@
 {
-    "welcome_to_react": "Welcome to React and react"
+    "nav_home": "Home",
+    "nav_about": "About",
+    "nav_work": "Work",
+    "nav_testimonials": "Testimonials",
+    "nav_skills": "Skills",
+    "nav_contact": "Contact"
 }
