@@ -72,7 +72,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(0.65rem, 1.7vw, 1.45rem);
+  gap: clamp(0.35rem, 1.2vw, 1rem);
 
   a {
     display: inline-flex;
@@ -81,7 +81,7 @@ html {
     border-radius: 0.4rem;
     color: var(--muted);
     font-size: 0.95rem;
-    padding-inline: 0.2rem;
+    padding: 0.5rem 0.65rem;
     text-decoration: none;
     transition:
       color 180ms var(--ease-out),
@@ -102,7 +102,7 @@ html {
     &:focus-visible {
       border-radius: 4px;
       outline: 2px solid var(--focus);
-      outline-offset: 4px;
+      outline-offset: 2px;
     }
   }
 }
@@ -285,6 +285,7 @@ html {
   gap: 0.65rem;
   padding: 0.85rem 1.05rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .button-primary {
@@ -663,7 +664,7 @@ html {
 
 .side-project-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.68fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.85rem;
   margin-block-start: 0.9rem;
 }

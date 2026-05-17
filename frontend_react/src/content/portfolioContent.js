@@ -35,6 +35,7 @@ export const translations = {
       copyEmail: 'Copiar email',
       copied: 'Copiado',
       copyFailed: 'No se pudo copiar',
+      opensInNewTab: 'abre en nueva pestaña',
       primaryNavigation: 'Navegación principal',
       preferences: 'Preferencias',
       mobileNavigation: 'Navegación móvil',
@@ -169,6 +170,7 @@ export const translations = {
       copyEmail: 'Copy email address',
       copied: 'Copied',
       copyFailed: 'Could not copy',
+      opensInNewTab: 'opens in new tab',
       primaryNavigation: 'Primary navigation',
       preferences: 'Preferences',
       mobileNavigation: 'Mobile navigation',
@@ -188,7 +190,7 @@ export const translations = {
     },
     about: {
       title: 'About',
-      body: 'Backend Engineer on Mercado Libre’s Sessions team. I maintain the core mobile and web authentication APIs in Go and Java that support the sessions of hundreds of millions of users across LatAm — including SSO with Mercado Pago, scoped sessions, Device Signing, and banking sessions for Mexico. I specialize in mission-critical services where availability, performance, and security are non-negotiable. I am also the AI referent in my team: I build agents, workflows, and internal tools that accelerate development.',
+      body: 'Backend Engineer on Mercado Libre’s Sessions team. I maintain the core mobile and web authentication APIs in Go and Java that support the sessions of hundreds of millions of users across LatAm — including SSO with Mercado Pago, scoped sessions, Device Signing, and banking sessions for Mexico. I specialize in mission-critical services where availability, performance, and security are non-negotiable. I am also the AI lead on my team: I build agents, workflows, and internal tools that accelerate development.',
     },
     impact: {
       title: 'Impact',
@@ -211,7 +213,7 @@ export const translations = {
     },
     ai: {
       title: 'AI and Productivity',
-      intro: 'AI referent in my team. I build agents, workflows, and internal tools that accelerate the entire Sessions team.',
+      intro: 'AI lead on my team. I build agents, workflows, and internal tools that accelerate the entire Sessions team.',
       stats: [
         { value: '10+', unit: 'published plugins', label: 'Internal Claude Code marketplace for the team' },
         { value: '4x', unit: 'dev speed', label: 'Feature development with AI-assisted coding' },
@@ -230,7 +232,7 @@ export const translations = {
     },
     formation: {
       title: 'Education',
-      educationTitle: 'Education',
+      educationTitle: 'Background',
       languagesTitle: 'Languages',
       degree: 'Computer Engineering',
       institution: 'Universidad de Morón · 2019 – 2026',
