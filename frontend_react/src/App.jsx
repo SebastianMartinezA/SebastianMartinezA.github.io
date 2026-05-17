@@ -404,7 +404,7 @@ const App = () => {
               <article className="stat-card" key={`${stat.value}-${stat.label}`}>
                 <p className="stat-value">
                   <span>{stat.value}</span>
-                  <small>{stat.unit}</small>
+                  <span className="stat-unit">{stat.unit}</span>
                 </p>
                 <p>{stat.label}</p>
               </article>
@@ -436,7 +436,7 @@ const App = () => {
               <article className="stat-card" key={`${stat.value}-${stat.label}`}>
                 <p className="stat-value">
                   <span>{stat.value}</span>
-                  <small>{stat.unit}</small>
+                  <span className="stat-unit">{stat.unit}</span>
                 </p>
                 <p>{stat.label}</p>
               </article>
