@@ -75,6 +75,12 @@ test('copies the contact email with clear feedback', async () => {
   expect(screen.getByText('Copiado')).toBeInTheDocument();
 });
 
+test('points the hero contact call to action to the contact section', () => {
+  render(<App />);
+
+  expect(screen.getByRole('link', { name: 'Contactarme' })).toHaveAttribute('href', '#contact');
+});
+
 test('opens a compact mobile menu with navigation and preference actions', async () => {
   render(<App />);
 

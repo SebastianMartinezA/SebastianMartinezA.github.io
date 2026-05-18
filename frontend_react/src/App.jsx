@@ -372,8 +372,8 @@ const App = () => {
             <div className="hero-actions">
               <a
                 className="button button-primary"
-                href={`mailto:${EMAIL}`}
-                onClick={() => trackEvent('contact_email_click', { placement: 'hero' })}
+                href="#contact"
+                onClick={() => trackEvent('contact_cta_click', { placement: 'hero' })}
               >
                 <FiMail aria-hidden="true" />
                 {t.hero.primaryCta}
