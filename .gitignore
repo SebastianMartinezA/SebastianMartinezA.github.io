@@ -17,5 +17,6 @@ coverage/
 
 # Local agent/tooling artifacts
 .agents/
+.playwright-mcp/
 output/
 skills-lock.json

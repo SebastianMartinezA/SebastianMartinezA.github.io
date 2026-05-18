@@ -26,6 +26,9 @@ jobs:
       
       - name: Install and build
         working-directory: frontend_react
+        env:
+          VITE_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN }}
+          VITE_PUBLIC_POSTHOG_HOST: ${{ vars.VITE_PUBLIC_POSTHOG_HOST }}
         run: |
           npm ci
           npm run build

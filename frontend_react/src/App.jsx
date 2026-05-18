@@ -18,6 +18,7 @@ import {
   FiX,
 } from 'react-icons/fi';
 import './App.scss';
+import { trackEvent } from './analytics';
 import {
   EMAIL,
   GITHUB_URL,
@@ -173,6 +174,15 @@ const App = () => {
   const nextLanguage = language === 'es' ? 'en' : 'es';
   const isDark = theme === 'dark';
 
+  const handleLanguageToggle = (placement) => {
+    trackEvent('language_toggle', {
+      from: language,
+      to: nextLanguage,
+      placement,
+    });
+    setLanguage(nextLanguage);
+  };
+
   const applyTheme = (nextThemeValue) => {
     document.documentElement.dataset.theme = nextThemeValue;
     setTheme(nextThemeValue);
@@ -181,6 +191,10 @@ const App = () => {
   const handleThemeToggle = (event) => {
     const nextThemeValue = isDark ? 'light' : 'dark';
     const supportsViewTransition = typeof document.startViewTransition === 'function';
+    trackEvent('theme_toggle', {
+      from: theme,
+      to: nextThemeValue,
+    });
 
     if (!supportsViewTransition || prefersReducedMotion()) {
       applyTheme(nextThemeValue);
@@ -221,6 +235,7 @@ const App = () => {
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(EMAIL);
+      trackEvent('email_copy', { status: 'success' });
       setCopyState('copied');
     } catch {
       const textarea = document.createElement('textarea');
@@ -231,8 +246,11 @@ const App = () => {
       textarea.select();
 
       try {
-        setCopyState(document.execCommand('copy') ? 'copied' : 'failed');
+        const copied = document.execCommand('copy');
+        trackEvent('email_copy', { status: copied ? 'success' : 'failed', fallback: true });
+        setCopyState(copied ? 'copied' : 'failed');
       } catch {
+        trackEvent('email_copy', { status: 'failed', fallback: true });
         setCopyState('failed');
       } finally {
         textarea.remove();
@@ -253,7 +271,12 @@ const App = () => {
 
         <nav className="site-nav" aria-label={t.controls.primaryNavigation}>
           {navItems.map(([id, label]) => (
-            <a key={id} href={`#${id}`} aria-current={activeSection === id ? 'location' : undefined}>
+            <a
+              key={id}
+              href={`#${id}`}
+              aria-current={activeSection === id ? 'location' : undefined}
+              onClick={() => trackEvent('nav_click', { target: id, label, placement: 'desktop' })}
+            >
               {label}
             </a>
           ))}
@@ -263,7 +286,7 @@ const App = () => {
           <button
             className="icon-button"
             type="button"
-            onClick={() => setLanguage(nextLanguage)}
+            onClick={() => handleLanguageToggle('header')}
             aria-label={t.controls.switchLanguage}
           >
             <span>{LANGUAGES.find((item) => item.code === nextLanguage).label}</span>
@@ -297,7 +320,10 @@ const App = () => {
                   key={id}
                   href={`#${id}`}
                   aria-current={activeSection === id ? 'location' : undefined}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => {
+                    trackEvent('nav_click', { target: id, label, placement: 'mobile' });
+                    setMenuOpen(false);
+                  }}
                 >
                   {label}
                 </a>
@@ -308,7 +334,7 @@ const App = () => {
                 className="icon-button"
                 type="button"
                 onClick={() => {
-                  setLanguage(nextLanguage);
+                  handleLanguageToggle('mobile_menu');
                   setMenuOpen(false);
                 }}
                 aria-label={t.controls.switchLanguage}
@@ -344,7 +370,11 @@ const App = () => {
             </div>
 
             <div className="hero-actions">
-              <a className="button button-primary" href={`mailto:${EMAIL}`}>
+              <a
+                className="button button-primary"
+                href={`mailto:${EMAIL}`}
+                onClick={() => trackEvent('contact_email_click', { placement: 'hero' })}
+              >
                 <FiMail aria-hidden="true" />
                 {t.hero.primaryCta}
               </a>
@@ -354,6 +384,7 @@ const App = () => {
                 rel="noreferrer"
                 target="_blank"
                 aria-label={`${t.hero.githubCta} (${t.controls.opensInNewTab})`}
+                onClick={() => trackEvent('github_click', { placement: 'hero' })}
               >
                 <FiGithub aria-hidden="true" />
                 {t.hero.githubCta}
@@ -364,6 +395,7 @@ const App = () => {
                 rel="noreferrer"
                 target="_blank"
                 aria-label={`${t.hero.linkedinCta} (${t.controls.opensInNewTab})`}
+                onClick={() => trackEvent('linkedin_click', { placement: 'hero' })}
               >
                 <FiLinkedin aria-hidden="true" />
                 {t.hero.linkedinCta}
@@ -374,6 +406,7 @@ const App = () => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${t.hero.resumeCta} (${t.controls.opensInNewTab})`}
+                onClick={() => trackEvent('resume_click', { placement: 'hero' })}
               >
                 <FiDownload aria-hidden="true" />
                 {t.hero.resumeCta}
@@ -544,7 +577,10 @@ const App = () => {
         <Section id="contact" icon={FiMail} title={t.contact.title}>
           <p>{t.contact.body}</p>
           <div className="contact-card">
-            <a href={`mailto:${EMAIL}`}>
+            <a
+              href={`mailto:${EMAIL}`}
+              onClick={() => trackEvent('contact_email_click', { placement: 'contact' })}
+            >
               <FiMail aria-hidden="true" />
               <span>{EMAIL}</span>
             </a>
@@ -564,6 +600,7 @@ const App = () => {
               rel="noreferrer"
               target="_blank"
               aria-label={`${t.hero.githubCta} (${t.controls.opensInNewTab})`}
+              onClick={() => trackEvent('github_click', { placement: 'contact' })}
             >
               <FiGithub aria-hidden="true" />
               {t.hero.githubCta}
@@ -574,6 +611,7 @@ const App = () => {
               rel="noreferrer"
               target="_blank"
               aria-label={`${t.hero.linkedinCta} (${t.controls.opensInNewTab})`}
+              onClick={() => trackEvent('linkedin_click', { placement: 'contact' })}
             >
               <FiLinkedin aria-hidden="true" />
               {t.hero.linkedinCta}
