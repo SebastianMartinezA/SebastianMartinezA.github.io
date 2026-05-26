@@ -7,9 +7,10 @@ Portfolio personal publicado en [smar.ar](https://smar.ar/).
 - `main`: rama fuente. Todo cambio de código se hace acá.
 - `frontend_react/`: app React 18 + Vite + SCSS.
 - `gh-pages`: rama generada por GitHub Actions. Contiene solo el build estático publicado; no editar a mano.
-- `backend_sanity/`: legado del portfolio anterior. No participa del deploy actual.
 
 ## Desarrollo local
+
+Requiere Node.js 22 o superior, igual que el workflow de deploy.
 
 ```bash
 cd frontend_react

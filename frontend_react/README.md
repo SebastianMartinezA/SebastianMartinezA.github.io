@@ -4,6 +4,8 @@ App React 18 + Vite + SCSS para [smar.ar](https://smar.ar/).
 
 ## Scripts
 
+Requiere Node.js 22 o superior.
+
 ```bash
 npm ci
 npm run dev
