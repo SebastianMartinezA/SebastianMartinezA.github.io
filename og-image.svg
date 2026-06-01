@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Sebastian Martinez portfolio preview</title>
+  <desc id="desc">Social preview card for Sebastian Martinez, Senior Software Engineer.</desc>
+  <rect width="1200" height="630" fill="#f6f4ef"/>
+  <rect x="56" y="56" width="1088" height="518" rx="36" fill="#111827"/>
+  <path d="M56 432 C210 372 316 494 474 430 C646 360 746 236 918 286 C1010 312 1074 388 1144 350 L1144 574 L56 574 Z" fill="#0f766e" opacity="0.9"/>
+  <path d="M794 56 L1144 56 L1144 240 C1054 256 998 226 934 184 C882 150 832 116 794 56 Z" fill="#f59e0b"/>
+  <circle cx="995" cy="137" r="72" fill="#f6f4ef" opacity="0.16"/>
+  <text x="112" y="157" fill="#f6f4ef" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="3">SMAR.AR</text>
+  <text x="112" y="268" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700">Sebastian Martinez</text>
+  <text x="116" y="338" fill="#d1d5db" font-family="Arial, Helvetica, sans-serif" font-size="38">Senior Software Engineer</text>
+  <text x="116" y="414" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34">Backend · Seguridad · Autenticación</text>
+  <text x="116" y="464" fill="#e5e7eb" font-family="Arial, Helvetica, sans-serif" font-size="30">Golang · Kotlin · Java · Sistemas a escala</text>
+  <rect x="112" y="500" width="248" height="54" rx="27" fill="#f6f4ef"/>
+  <text x="143" y="536" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Portfolio personal</text>
+</svg>
