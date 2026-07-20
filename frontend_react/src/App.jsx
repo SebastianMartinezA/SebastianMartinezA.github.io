@@ -622,6 +622,7 @@ const App = () => {
 
       <footer className="site-footer">
         <p>{t.footer}</p>
+        <p>{t.privacy}</p>
       </footer>
     </div>
   );

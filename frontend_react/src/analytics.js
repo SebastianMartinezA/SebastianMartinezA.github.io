@@ -3,6 +3,20 @@ const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST || 'https://eu.i.po
 
 let posthogPromise;
 
+export const ANALYTICS_OPTIONS = {
+  defaults: '2026-01-30',
+  persistence: 'memory',
+  autocapture: false,
+  capture_pageview: true,
+  capture_pageleave: false,
+  disable_external_dependency_loading: true,
+  disable_session_recording: true,
+  disable_surveys: true,
+  advanced_disable_flags: true,
+  advanced_disable_feature_flags: true,
+  person_profiles: 'identified_only',
+};
+
 export const initAnalytics = () => {
   if (!posthogKey || typeof window === 'undefined') {
     return Promise.resolve(null);
@@ -14,16 +28,7 @@ export const initAnalytics = () => {
         if (!posthog.__loaded) {
           posthog.init(posthogKey, {
             api_host: posthogHost,
-            defaults: '2026-01-30',
-            autocapture: false,
-            capture_pageview: true,
-            capture_pageleave: false,
-            disable_external_dependency_loading: true,
-            disable_session_recording: true,
-            disable_surveys: true,
-            advanced_disable_flags: true,
-            advanced_disable_feature_flags: true,
-            person_profiles: 'identified_only',
+            ...ANALYTICS_OPTIONS,
           });
         }
 

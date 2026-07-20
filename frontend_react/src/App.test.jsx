@@ -157,3 +157,11 @@ test('repeats GitHub and LinkedIn calls to action in contact', () => {
   expect(screen.getAllByRole('link', { name: 'GitHub (abre en nueva pestaña)' })).toHaveLength(2);
   expect(screen.getAllByRole('link', { name: 'LinkedIn (abre en nueva pestaña)' })).toHaveLength(2);
 });
+
+test('discloses optional cookieless analytics in the footer', () => {
+  render(<App />);
+
+  expect(
+    screen.getByText(/analítica de uso opcional.*visitas e interacciones.*sin cookies ni almacenamiento local.*sin grabación de sesiones/i)
+  ).toBeInTheDocument();
+});

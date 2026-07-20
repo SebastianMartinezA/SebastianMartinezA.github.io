@@ -145,6 +145,7 @@ export const translations = {
       socialLabel: 'También podés encontrarme en',
     },
     footer: '© 2026 Sebastian Martinez',
+    privacy: 'La analítica de uso opcional, cuando está configurada, envía visitas e interacciones a PostHog con identificadores solo en memoria: sin cookies ni almacenamiento local y sin grabación de sesiones.',
   },
   en: {
     meta: {
@@ -280,5 +281,6 @@ export const translations = {
       socialLabel: 'You can also find me on',
     },
     footer: '© 2026 Sebastian Martinez',
+    privacy: 'Optional usage analytics, when configured, sends pageviews and interactions to PostHog with memory-only identifiers: no cookies or local storage, and no session recording.',
   },
 };
