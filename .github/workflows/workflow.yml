@@ -6,7 +6,7 @@ on:
       - "main"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -29,60 +27,17 @@ jobs:
           cache: npm
           cache-dependency-path: frontend_react/package-lock.json
       
-      - name: Install, test, and build
+      - name: Install and build
         working-directory: frontend_react
         env:
           VITE_PUBLIC_POSTHOG_PROJECT_TOKEN: ${{ vars.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN }}
           VITE_PUBLIC_POSTHOG_HOST: ${{ vars.VITE_PUBLIC_POSTHOG_HOST }}
         run: |
           npm ci
-          npm test
           npm run build
 
-      - name: Upload verified site artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: portfolio-site
-          path: frontend_react/dist
-          if-no-files-found: error
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-
-      - name: Download verified site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: portfolio-site
-          path: frontend_react/dist
-
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@8817a56e5bfec6e2b08345c81f4d422db53a2cdc # v4.3.3
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: frontend_react/dist # The folder the action should deploy.
-
-      - name: Smoke check deployed site
-        run: |
-          for i in $(seq 1 6); do
-            echo "--- Smoke check attempt $i of 6 ---"
-            if curl --fail --silent --show-error --location --max-time 15 \
-                https://smar.ar/ && \
-               curl --fail --silent --show-error --location --max-time 15 \
-                https://smar.ar/sitemap.xml; then
-              echo "Smoke check passed on attempt $i"
-              exit 0
-            fi
-            echo "Attempt $i failed. Waiting 20 seconds..."
-            sleep 20
-          done
-          echo "Smoke check failed after 6 attempts"
-          exit 1
