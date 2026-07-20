@@ -3,6 +3,27 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
+const mockTrackEvent = vi.hoisted(() => vi.fn());
+
+vi.mock('./analytics', () => ({
+  trackEvent: mockTrackEvent,
+}));
+
+let intersectionCallback;
+let intersectionOptions;
+let intersectionObserver;
+
+class MockIntersectionObserver {
+  constructor(callback, options) {
+    intersectionCallback = callback;
+    intersectionOptions = options;
+    this.observe = vi.fn();
+    this.unobserve = vi.fn();
+    this.disconnect = vi.fn();
+    intersectionObserver = this;
+  }
+}
+
 const createStorageMock = () => {
   let store = {};
   return {
@@ -34,6 +55,11 @@ beforeEach(() => {
       writeText: vi.fn().mockResolvedValue(undefined),
     },
   });
+  intersectionCallback = undefined;
+  intersectionOptions = undefined;
+  intersectionObserver = undefined;
+  vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
+  mockTrackEvent.mockClear();
 });
 
 afterEach(() => {
@@ -73,6 +99,7 @@ test('copies the contact email with clear feedback', async () => {
 
   expect(navigator.clipboard.writeText).toHaveBeenCalledWith('sebas@smar.ar');
   expect(screen.getByText('Copiado')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'Copiado' })).toBeInTheDocument();
 });
 
 test('points the hero contact call to action to the contact section', () => {
@@ -109,7 +136,7 @@ test('renders formation, projects, citizenship, and updated tech stack', () => {
   expect(screen.getByRole('heading', { name: 'Formación' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ingeniería en Informática' })).toBeInTheDocument();
   expect(screen.getByText('Universidad de Morón · 2019 – 2026')).toBeInTheDocument();
-  expect(screen.getByText('Doble ciudadanía AR/IT · disponible para EU')).toBeInTheDocument();
+  expect(screen.getByText('Doble ciudadanía AR/IT · disponible para UE')).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Idiomas' })).toBeInTheDocument();
   expect(screen.getByText('Español')).toBeInTheDocument();
   expect(screen.getByText('Bilingüe')).toBeInTheDocument();
@@ -148,7 +175,7 @@ test('presents impact bullets as prominent metrics', () => {
   expect(screen.getByText('Objetivo de disponibilidad en servicios críticos')).toBeInTheDocument();
   expect(screen.getByText('500K+')).toBeInTheDocument();
   expect(screen.getByText('SSO/día')).toBeInTheDocument();
-  expect(screen.getByText('Canjes de nonce SSO mobile')).toBeInTheDocument();
+  expect(screen.getByText('Canjes de nonce SSO móvil')).toBeInTheDocument();
 });
 
 test('repeats GitHub and LinkedIn calls to action in contact', () => {
@@ -164,4 +191,21 @@ test('discloses optional cookieless analytics in the footer', () => {
   expect(
     screen.getByText(/analítica de uso opcional.*visitas e interacciones.*sin cookies ni almacenamiento local.*sin grabación de sesiones/i)
   ).toBeInTheDocument();
+});
+
+test('tracks each visible section only once', () => {
+  render(<App />);
+
+  expect(intersectionOptions).toEqual({ threshold: 0.25 });
+  document.querySelectorAll('.portfolio-section').forEach((section) => {
+    expect(intersectionObserver.observe).toHaveBeenCalledWith(section);
+  });
+
+  const aboutSection = document.querySelector('#about');
+  intersectionCallback([{ target: aboutSection, isIntersecting: true }]);
+  expect(mockTrackEvent).toHaveBeenCalledWith('section_viewed', { section: 'about' });
+  expect(mockTrackEvent).toHaveBeenCalledTimes(1);
+
+  intersectionCallback([{ target: aboutSection, isIntersecting: true }]);
+  expect(mockTrackEvent).toHaveBeenCalledTimes(1);
 });

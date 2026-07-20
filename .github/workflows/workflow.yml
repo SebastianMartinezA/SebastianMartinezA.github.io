@@ -69,3 +69,20 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: frontend_react/dist # The folder the action should deploy.
+
+      - name: Smoke check deployed site
+        run: |
+          for i in $(seq 1 6); do
+            echo "--- Smoke check attempt $i of 6 ---"
+            if curl --fail --silent --show-error --location --max-time 15 \
+                https://smar.ar/ && \
+               curl --fail --silent --show-error --location --max-time 15 \
+                https://smar.ar/sitemap.xml; then
+              echo "Smoke check passed on attempt $i"
+              exit 0
+            fi
+            echo "Attempt $i failed. Waiting 20 seconds..."
+            sleep 20
+          done
+          echo "Smoke check failed after 6 attempts"
+          exit 1
