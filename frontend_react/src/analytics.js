@@ -3,6 +3,22 @@ const posthogHost = import.meta.env.VITE_PUBLIC_POSTHOG_HOST || 'https://eu.i.po
 
 let posthogPromise;
 
+const UTM_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+const readInitialUtmParams = () => {
+  if (typeof window === 'undefined') return {};
+
+  const searchParams = new URLSearchParams(window.location.search);
+  return UTM_PARAM_KEYS.reduce((params, key) => {
+    const value = searchParams.get(key);
+    if (value) params[key] = value;
+    return params;
+  }, {});
+};
+
+// Capture campaign context once, without persisting it between visits.
+export const INITIAL_UTM_PARAMS = readInitialUtmParams();
+
 export const ANALYTICS_OPTIONS = {
   defaults: '2026-01-30',
   persistence: 'memory',
@@ -43,7 +59,12 @@ export const initAnalytics = () => {
 export const trackEvent = (eventName, properties = {}) => {
   if (!posthogKey) return;
 
+  const eventProperties = {
+    ...INITIAL_UTM_PARAMS,
+    ...properties,
+  };
+
   void initAnalytics().then((posthog) => {
-    posthog?.capture(eventName, properties);
+    posthog?.capture(eventName, eventProperties);
   });
 };

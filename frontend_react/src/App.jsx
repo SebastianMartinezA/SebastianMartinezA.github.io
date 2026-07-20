@@ -159,6 +159,26 @@ const App = () => {
   }, [copyState]);
 
   useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return undefined;
+
+    const viewedSections = new Set();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const sectionId = entry.target.id;
+        if (!entry.isIntersecting || !sectionId || viewedSections.has(sectionId)) return;
+
+        viewedSections.add(sectionId);
+        trackEvent('section_viewed', { section: sectionId });
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll('.portfolio-section').forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     if (!menuOpen) return undefined;
 
     const handleKeyDown = (event) => {
@@ -173,6 +193,11 @@ const App = () => {
 
   const nextLanguage = language === 'es' ? 'en' : 'es';
   const isDark = theme === 'dark';
+  const copyLabel = copyState === 'copied'
+    ? t.controls.copied
+    : copyState === 'failed'
+      ? t.controls.copyFailed
+      : t.controls.copyEmail;
 
   const handleLanguageToggle = (placement) => {
     trackEvent('language_toggle', {
@@ -357,7 +382,7 @@ const App = () => {
         )}
       </header>
 
-      <main id="main" className="portfolio-main">
+      <main id="main" className="portfolio-main" tabIndex="-1">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy">
             <p className="eyebrow">{t.hero.eyebrow}</p>
@@ -584,16 +609,18 @@ const App = () => {
               <FiMail aria-hidden="true" />
               <span>{EMAIL}</span>
             </a>
-            <button type="button" onClick={handleCopyEmail} aria-label={t.controls.copyEmail}>
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              aria-label={copyLabel}
+              aria-live="polite"
+              aria-atomic="true"
+            >
               <FiCopy aria-hidden="true" />
-              {copyState === 'copied'
-                ? t.controls.copied
-                : copyState === 'failed'
-                  ? t.controls.copyFailed
-                  : t.controls.copyEmail}
+              {copyLabel}
             </button>
           </div>
-          <div className="contact-socials" aria-label={t.contact.socialLabel}>
+          <nav className="contact-socials" aria-label={t.contact.socialLabel}>
             <a
               className="button button-secondary"
               href={GITHUB_URL}
@@ -616,7 +643,7 @@ const App = () => {
               <FiLinkedin aria-hidden="true" />
               {t.hero.linkedinCta}
             </a>
-          </div>
+          </nav>
         </Section>
       </main>
 
