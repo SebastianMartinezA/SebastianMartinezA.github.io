@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CV · Sebastian Martinez</title>
+    <style>
+      @page { size: A4; margin: 12mm 14mm; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        color: #1f1d1a;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9.2pt;
+        line-height: 1.36;
+      }
+      h1, h2, h3, p { margin: 0; }
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12mm;
+        align-items: end;
+        border-bottom: 1.5px solid #292622;
+        padding-bottom: 4mm;
+      }
+      h1 { font-size: 24pt; line-height: 1; }
+      .role { margin-top: 2mm; color: #76563c; font-size: 10.5pt; font-weight: 700; }
+      .contact { display: grid; gap: 1mm; text-align: right; }
+      a { color: inherit; text-decoration: none; }
+      main {
+        display: grid;
+        grid-template-columns: 1.75fr 1fr;
+        gap: 8mm;
+        margin-top: 5mm;
+      }
+      section + section { margin-top: 4.5mm; }
+      h2 {
+        margin-bottom: 2.4mm;
+        color: #76563c;
+        font-size: 10pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h3 { font-size: 10pt; }
+      .entry + .entry { margin-top: 3.2mm; }
+      .entry-head {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4mm;
+        align-items: baseline;
+      }
+      .company { margin-top: 0.4mm; color: #5f5a54; font-weight: 700; }
+      time { color: #69635d; font-size: 8.4pt; white-space: nowrap; }
+      ul { margin: 1.3mm 0 0; padding-left: 4.5mm; }
+      li + li { margin-top: 0.7mm; }
+      .promotion-list { display: grid; gap: 1.2mm; margin-top: 1.8mm; }
+      .promotion {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 3mm;
+      }
+      .tags { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+      .tag {
+        border: 1px solid #cfc8bf;
+        border-radius: 3px;
+        padding: 1mm 1.5mm;
+        background: #f7f5f1;
+      }
+      .muted { color: #69635d; }
+      .languages { display: grid; gap: 1.2mm; }
+      .language { display: flex; justify-content: space-between; gap: 3mm; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Sebastian Martinez</h1>
+        <p class="role">Senior Software Engineer · Backend</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:sebas@smar.ar">sebas@smar.ar</a>
+        <a href="https://smar.ar/">smar.ar</a>
+        <a href="https://www.linkedin.com/in/smartinezamaray/">linkedin.com/in/smartinezamaray</a>
+        <span>Buenos Aires, Argentina · ciudadanía AR/IT</span>
+      </div>
+    </header>
+
+    <main>
+      <div>
+        <section>
+          <h2>Perfil</h2>
+          <p>Senior Software Engineer especializado en backend, seguridad y sistemas distribuidos. Integro el equipo de Sessions de Mercado Libre, donde trabajo sobre APIs core de autenticación móvil y web en Go y Java. Referente de IA del equipo, con foco en agentes, workflows y herramientas internas de productividad.</p>
+        </section>
+
+        <section>
+          <h2>Experiencia</h2>
+          <article class="entry">
+            <div class="entry-head">
+              <div>
+                <h3>Mercado Libre</h3>
+                <p class="company">Sessions · Backend</p>
+              </div>
+              <time>dic. 2022 – presente</time>
+            </div>
+            <div class="promotion-list">
+              <div class="promotion"><strong>Sr. Software Engineer</strong><time>feb. 2026 – presente</time></div>
+              <div class="promotion"><strong>SSr. Software Engineer</strong><time>ene. 2024 – mar. 2026</time></div>
+              <div class="promotion"><strong>Software Developer · Backend</strong><time>dic. 2022 – feb. 2024</time></div>
+            </div>
+            <ul>
+              <li>Desarrollo y operación de APIs core de autenticación móvil y web para Mercado Libre y Mercado Pago.</li>
+              <li>Trabajo sobre Sessions, Device Signing, SSO y sesiones bancarias para México, con foco en disponibilidad, performance y seguridad.</li>
+              <li>Diseño de agentes, workflows y plugins internos para acelerar el desarrollo del equipo.</li>
+            </ul>
+          </article>
+
+          <article class="entry">
+            <div class="entry-head">
+              <div>
+                <h3>Mundo Caño</h3>
+                <p class="company">Administrador de sistemas y e-commerce</p>
+              </div>
+              <time>oct. 2018 – dic. 2022</time>
+            </div>
+            <p class="muted">Administración de sistemas, información, catálogo, ventas online y servicios web.</p>
+          </article>
+        </section>
+
+        <section>
+          <h2>Proyectos seleccionados</h2>
+          <article class="entry">
+            <h3>Banking Sessions Mexico</h3>
+            <p class="muted">Diseño del modelo de unicidad de sesión cross-domain y del contrato de hard logout.</p>
+          </article>
+          <article class="entry">
+            <h3>Device Signing Recovery</h3>
+            <p class="muted">Liderazgo de la primera fase de recovery y definición de la estrategia de canary con rollback automático.</p>
+          </article>
+          <article class="entry">
+            <h3>Authprocess</h3>
+            <p class="muted">Primer feature AI-assisted del equipo, liderado de extremo a extremo desde el RFC hasta producción.</p>
+          </article>
+        </section>
+      </div>
+
+      <aside>
+        <section>
+          <h2>Tecnologías</h2>
+          <div class="tags">
+            <span class="tag">Go</span><span class="tag">Java</span><span class="tag">REST</span>
+            <span class="tag">Spring Boot</span><span class="tag">Vert.x</span><span class="tag">JWT</span>
+            <span class="tag">Kafka</span><span class="tag">Pub/Sub</span><span class="tag">Redis</span>
+            <span class="tag">SQL / NoSQL</span><span class="tag">Docker</span><span class="tag">GCP</span>
+            <span class="tag">Datadog</span><span class="tag">OpenTelemetry</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>IA y productividad</h2>
+          <div class="tags">
+            <span class="tag">Claude Code</span><span class="tag">Codex</span><span class="tag">RAG</span>
+            <span class="tag">MCP</span><span class="tag">n8n</span><span class="tag">Multi-agent workflows</span>
+          </div>
+        </section>
+
+        <section>
+          <h2>Formación</h2>
+          <h3>Ingeniería en Informática</h3>
+          <p class="muted">Universidad de Morón</p>
+          <p class="muted">2019 – graduación estimada 2026</p>
+        </section>
+
+        <section>
+          <h2>Idiomas</h2>
+          <div class="languages">
+            <div class="language"><strong>Español</strong><span>Nativo</span></div>
+            <div class="language"><strong>Inglés</strong><span>Bilingüe</span></div>
+            <div class="language"><strong>Alemán</strong><span>Básico</span></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Disponibilidad</h2>
+          <p>Remoto o híbrido en Argentina, relocation y oportunidades en la Unión Europea.</p>
+        </section>
+      </aside>
+    </main>
+  </body>
+</html>

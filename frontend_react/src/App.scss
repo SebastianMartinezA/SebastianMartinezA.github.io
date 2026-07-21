@@ -1,5 +1,5 @@
 html {
-  scroll-padding-top: 44px;
+  scroll-padding-top: 80px;
 }
 
 ::view-transition-old(root),
@@ -407,6 +407,45 @@ html {
     color: var(--muted);
     font-size: 1.06rem;
     line-height: 1.8;
+  }
+}
+
+.career-progression {
+  margin-block-start: 1.5rem;
+}
+
+.career-list {
+  display: grid;
+  margin-block-start: 0.9rem;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 1rem;
+    border-block-start: 1px solid var(--line);
+    padding-block: 0.9rem;
+  }
+
+  h4 {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  time {
+    color: var(--soft-text);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    text-align: end;
   }
 }
 
@@ -844,6 +883,14 @@ html {
 }
 
 @media (max-width: 620px) {
+  .career-list li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .career-list time {
+    text-align: start;
+  }
   .site-header {
     padding: 0.65rem 0.8rem;
   }

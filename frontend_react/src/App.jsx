@@ -454,6 +454,20 @@ const App = () => {
 
         <Section id="about" icon={FiBriefcase} title={t.about.title}>
           <p>{t.about.body}</p>
+          <div className="career-progression">
+            <h3 className="subsection-title">{t.about.experienceTitle}</h3>
+            <ol className="career-list">
+              {t.about.experience.map((item) => (
+                <li key={`${item.company}-${item.role}`}>
+                  <div>
+                    <h4>{item.role}</h4>
+                    <p>{item.company}</p>
+                  </div>
+                  <time>{item.period}</time>
+                </li>
+              ))}
+            </ol>
+          </div>
         </Section>
 
         <Section id="impact" icon={FiActivity} title={t.impact.title}>

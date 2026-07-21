@@ -13,7 +13,7 @@ export const LANGUAGES = [
 export const translations = {
   es: {
     meta: {
-      title: 'Sebastian Martinez · Senior Software Engineer en Mercado Libre',
+      title: 'Sebastian Martinez · Senior Software Engineer · Backend en Mercado Libre',
     },
     nav: {
       about: 'Sobre mí',
@@ -44,18 +44,25 @@ export const translations = {
     hero: {
       eyebrow: 'Backend, seguridad y escala',
       name: 'Sebastian Martinez',
-      role: 'Senior Software Engineer',
+      role: 'Senior Software Engineer · Backend',
       body: 'APIs core de autenticación móvil y web para cientos de millones de usuarios en LatAm. Sessions, Device Signing y banking sessions en Mercado Libre.',
       primaryCta: 'Contactarme',
       githubCta: 'GitHub',
       linkedinCta: 'LinkedIn',
       resumeCta: 'CV',
-      availability: 'Buenos Aires · remoto, híbrido o presencial',
-      citizenship: 'Doble ciudadanía AR/IT · disponible para UE',
+      availability: 'Buenos Aires · remoto o híbrido en Argentina',
+      citizenship: 'Doble ciudadanía AR/IT · relocation y oportunidades en la UE',
     },
     about: {
       title: 'Sobre mí',
       body: 'Backend Engineer en el equipo de Sessions de Mercado Libre. Mantengo las APIs core de autenticación móvil y web en Go y Java que sostienen la sesión de cientos de millones de usuarios en LatAm — incluyendo SSO con Mercado Pago, scoped sessions, Device Signing y banking sessions para México. Me especializo en servicios de misión crítica donde la disponibilidad, la performance y la seguridad no son negociables. También soy referente de IA en mi equipo: construyo agentes, workflows y herramientas internas que aceleran el desarrollo.',
+      experienceTitle: 'Trayectoria',
+      experience: [
+        { company: 'Mercado Libre', role: 'Sr. Software Engineer', period: 'feb. 2026 – presente' },
+        { company: 'Mercado Libre', role: 'SSr. Software Engineer', period: 'ene. 2024 – mar. 2026' },
+        { company: 'Mercado Libre', role: 'Software Developer · Backend', period: 'dic. 2022 – feb. 2024' },
+        { company: 'Mundo Caño', role: 'Administrador de sistemas y e-commerce', period: 'oct. 2018 – dic. 2022' },
+      ],
     },
     impact: {
       title: 'Impacto',
@@ -81,7 +88,7 @@ export const translations = {
       intro: 'Referente de IA en mi equipo. Construyo agentes, workflows y herramientas internas que aceleran a todo el equipo de Sessions.',
       stats: [
         { value: '10+', unit: 'plugins publicados', label: 'Marketplace interno de Claude Code para el equipo' },
-        { value: '4x', unit: 'velocidad de desarrollo', label: 'Desarrollo de features con AI-assisted coding' },
+        { value: '1', unit: 'feature AI-assisted', label: 'Authprocess, del RFC a producción' },
         { value: '1', unit: 'agente RAG', label: 'Knowledge base interna autoactualizada' },
         { value: '3', unit: 'automatizaciones', label: 'Workflows en producción usados por el equipo' },
       ],
@@ -91,7 +98,7 @@ export const translations = {
       highlights: [
         'Diseñé y mantengo el marketplace de plugins de Claude Code de mi equipo: 10 plugins en producción, incluyendo debate multi-agente, ejecución de Codex/Gemini, generación de PR descriptions y resúmenes diarios.',
         'Construí un agente RAG sobre la knowledge base del dominio, autoactualizado semanalmente, en uso por el liderazgo del equipo.',
-        'Lideré el primer feature AI-assisted del equipo de extremo a extremo: del RFC a producción, con métricas de 4x velocidad de desarrollo y un time-to-prod 2x más rápido.',
+        'Lideré Authprocess, el primer feature AI-assisted del equipo, de extremo a extremo: desde el RFC hasta producción.',
         'Presenté en el primer Workshop de IA del equipo (ante 50+ asistentes de Sessions, Reauth, BI y Security).',
       ],
     },
@@ -100,7 +107,7 @@ export const translations = {
       educationTitle: 'Educación',
       languagesTitle: 'Idiomas',
       degree: 'Ingeniería en Informática',
-      institution: 'Universidad de Morón · 2019 – 2026',
+      institution: 'Universidad de Morón · 2019 – graduación estimada 2026',
       languages: [
         { name: 'Español', level: 'Nativo' },
         { name: 'Inglés', level: 'Bilingüe' },
@@ -113,6 +120,12 @@ export const translations = {
       sideTitle: 'Proyectos personales',
       roleLabel: 'Mi rol',
       items: [
+        {
+          title: 'Authprocess',
+          description: 'Primer feature AI-assisted del equipo, desarrollado de extremo a extremo desde el RFC hasta producción.',
+          role: 'Lideré el diseño y la implementación del feature, integrando AI-assisted coding al proceso de desarrollo.',
+          tags: ['AI-assisted coding', 'RFC', 'Backend'],
+        },
         {
           title: 'Banking Sessions México',
           description: 'Diseño e implementación de sesiones bancarias para Mercado Pago México: creación, validación, unicidad, extensión, expiración y hard logout cross-domain.',
@@ -149,7 +162,7 @@ export const translations = {
   },
   en: {
     meta: {
-      title: 'Sebastian Martinez · Senior Software Engineer at Mercado Libre',
+      title: 'Sebastian Martinez · Senior Software Engineer · Backend at Mercado Libre',
     },
     nav: {
       about: 'About',
@@ -180,18 +193,25 @@ export const translations = {
     hero: {
       eyebrow: 'Backend, security and scale',
       name: 'Sebastian Martinez',
-      role: 'Senior Software Engineer',
+      role: 'Senior Software Engineer · Backend',
       body: 'Core mobile and web authentication APIs for hundreds of millions of users across LatAm. Sessions, Device Signing, and banking sessions at Mercado Libre.',
       primaryCta: 'Contact me',
       githubCta: 'GitHub',
       linkedinCta: 'LinkedIn',
       resumeCta: 'Resume',
-      availability: 'Buenos Aires · remote, hybrid or on-site',
-      citizenship: 'Dual AR/IT citizenship · available for EU',
+      availability: 'Buenos Aires · remote or hybrid roles in Argentina',
+      citizenship: 'Dual AR/IT citizenship · relocation and EU opportunities',
     },
     about: {
       title: 'About',
       body: 'Backend Engineer on Mercado Libre’s Sessions team. I maintain the core mobile and web authentication APIs in Go and Java that support the sessions of hundreds of millions of users across LatAm — including SSO with Mercado Pago, scoped sessions, Device Signing, and banking sessions for Mexico. I specialize in mission-critical services where availability, performance, and security are non-negotiable. I am also the AI lead on my team: I build agents, workflows, and internal tools that accelerate development.',
+      experienceTitle: 'Career progression',
+      experience: [
+        { company: 'Mercado Libre', role: 'Sr. Software Engineer', period: 'Feb 2026 – present' },
+        { company: 'Mercado Libre', role: 'SSr. Software Engineer', period: 'Jan 2024 – Mar 2026' },
+        { company: 'Mercado Libre', role: 'Software Developer · Backend', period: 'Dec 2022 – Feb 2024' },
+        { company: 'Mundo Caño', role: 'Systems and e-commerce administrator', period: 'Oct 2018 – Dec 2022' },
+      ],
     },
     impact: {
       title: 'Impact',
@@ -217,7 +237,7 @@ export const translations = {
       intro: 'AI lead on my team. I build agents, workflows, and internal tools that accelerate the entire Sessions team.',
       stats: [
         { value: '10+', unit: 'published plugins', label: 'Internal Claude Code marketplace for the team' },
-        { value: '4x', unit: 'dev speed', label: 'Feature development with AI-assisted coding' },
+        { value: '1', unit: 'AI-assisted feature', label: 'Authprocess, from RFC to production' },
         { value: '1', unit: 'RAG agent', label: 'Auto-updated internal knowledge base' },
         { value: '3', unit: 'automations', label: 'Production workflows used by the team' },
       ],
@@ -227,7 +247,7 @@ export const translations = {
       highlights: [
         'I designed and maintain my team’s Claude Code plugin marketplace: 10 plugins in production, including multi-agent debate, Codex/Gemini execution, PR description generation, and daily summaries.',
         'I built a RAG agent over the domain knowledge base, auto-updated weekly and used by team leadership.',
-        'I led the team’s first AI-assisted feature end to end: from RFC to production, with 4x development speed and a 2x faster time-to-prod.',
+        'I led Authprocess, the team’s first AI-assisted feature, end to end: from RFC to production.',
         'I presented at the team’s first AI Workshop (50+ people across Sessions, Reauth, BI, and Security).',
       ],
     },
@@ -236,7 +256,7 @@ export const translations = {
       educationTitle: 'Background',
       languagesTitle: 'Languages',
       degree: 'Computer Engineering',
-      institution: 'Universidad de Morón · 2019 – 2026',
+      institution: 'Universidad de Morón · 2019 – expected graduation 2026',
       languages: [
         { name: 'Spanish', level: 'Native' },
         { name: 'English', level: 'Bilingual' },
@@ -249,6 +269,12 @@ export const translations = {
       sideTitle: 'Side projects',
       roleLabel: 'My role',
       items: [
+        {
+          title: 'Authprocess',
+          description: 'The team’s first AI-assisted feature, developed end to end from RFC to production.',
+          role: 'I led the feature’s design and implementation, integrating AI-assisted coding into the development process.',
+          tags: ['AI-assisted coding', 'RFC', 'Backend'],
+        },
         {
           title: 'Banking Sessions Mexico',
           description: 'Design and implementation of banking sessions for Mercado Pago Mexico: creation, validation, uniqueness, extension, expiration, and cross-domain hard logout.',

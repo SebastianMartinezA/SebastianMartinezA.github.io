@@ -130,13 +130,16 @@ test('opens a compact mobile menu with navigation and preference actions', async
   expect(screen.getByRole('button', { name: 'Cerrar menú' })).toBeInTheDocument();
 });
 
-test('renders formation, projects, citizenship, and updated tech stack', () => {
+test('renders career progression, formation, projects, citizenship, and updated tech stack', () => {
   render(<App />);
 
   expect(screen.getByRole('heading', { name: 'Formación' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Ingeniería en Informática' })).toBeInTheDocument();
-  expect(screen.getByText('Universidad de Morón · 2019 – 2026')).toBeInTheDocument();
-  expect(screen.getByText('Doble ciudadanía AR/IT · disponible para UE')).toBeInTheDocument();
+  expect(screen.getByText('Universidad de Morón · 2019 – graduación estimada 2026')).toBeInTheDocument();
+  expect(screen.getByText('Doble ciudadanía AR/IT · relocation y oportunidades en la UE')).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Trayectoria' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Sr. Software Engineer' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'SSr. Software Engineer' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Idiomas' })).toBeInTheDocument();
   expect(screen.getByText('Español')).toBeInTheDocument();
   expect(screen.getByText('Bilingüe')).toBeInTheDocument();
@@ -154,6 +157,7 @@ test('renders formation, projects, citizenship, and updated tech stack', () => {
   expect(screen.queryByText('Kotlin')).not.toBeInTheDocument();
   expect(screen.queryByText('gRPC')).not.toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Proyectos' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Authprocess' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Banking Sessions México' })).toBeInTheDocument();
   expect(screen.getByText(/Diseñé el modelo de unicidad de sesión cross-domain/)).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Device Signing Recovery' })).toBeInTheDocument();
