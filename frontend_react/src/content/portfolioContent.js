@@ -1,9 +1,13 @@
 import resumeUrl from '../assets/ResumeSebastian.pdf';
+import resumeEnglishUrl from '../assets/ResumeSebastianEN.pdf';
 
 export const EMAIL = 'sebas@smar.ar';
 export const GITHUB_URL = 'https://github.com/SebastianMartinezA';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/smartinezamaray/';
-export const RESUME_URL = resumeUrl;
+export const RESUME_URLS = {
+  es: resumeUrl,
+  en: resumeEnglishUrl,
+};
 
 export const LANGUAGES = [
   { code: 'es', label: 'ES', name: 'Español' },
@@ -131,6 +135,12 @@ export const translations = {
           description: 'Diseño e implementación de sesiones bancarias para Mercado Pago México: creación, validación, unicidad, extensión, expiración y hard logout cross-domain.',
           role: 'Diseñé el modelo de unicidad de sesión cross-domain y el contrato de hard logout.',
           tags: ['Go', 'JWT', 'REST', 'BigQuery'],
+        },
+        {
+          title: 'SSO de Banco',
+          description: 'Migración del modelo de datos existente de México a un nuevo formato y una nueva base de datos para soportar Banco.',
+          role: 'Diseñé la estrategia de migración de los datos actuales al nuevo modelo y almacenamiento.',
+          tags: ['Data Migration', 'Backend', 'SSO'],
         },
         {
           title: 'Device Signing Recovery',
@@ -280,6 +290,12 @@ export const translations = {
           description: 'Design and implementation of banking sessions for Mercado Pago Mexico: creation, validation, uniqueness, extension, expiration, and cross-domain hard logout.',
           role: 'I designed the cross-domain session uniqueness model and the hard logout contract.',
           tags: ['Go', 'JWT', 'REST', 'BigQuery'],
+        },
+        {
+          title: 'Bank SSO',
+          description: 'Migration of Mexico’s existing data model to a new format and database to support Bank.',
+          role: 'I designed the migration strategy from the current data to the new model and storage.',
+          tags: ['Data Migration', 'Backend', 'SSO'],
         },
         {
           title: 'Device Signing Recovery',

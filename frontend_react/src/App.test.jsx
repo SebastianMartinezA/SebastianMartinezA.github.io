@@ -46,8 +46,13 @@ beforeEach(() => {
     value: createStorageMock(),
   });
   window.localStorage.clear();
+  window.history.replaceState({}, '', '/');
   document.documentElement.removeAttribute('data-theme');
   document.documentElement.lang = 'en';
+  Object.defineProperty(Element.prototype, 'scrollIntoView', {
+    configurable: true,
+    value: vi.fn(),
+  });
   vi.stubGlobal('navigator', {
     ...window.navigator,
     language: 'es-AR',
@@ -78,6 +83,42 @@ test('switches the portfolio copy between Spanish and English', async () => {
   expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();
   expect(document.documentElement.lang).toBe('en');
   expect(window.localStorage.getItem('portfolio-language')).toBe('en');
+  expect(new URLSearchParams(window.location.search).get('lang')).toBe('en');
+});
+
+test('uses a shareable language query and preserves attribution and hash on toggle', async () => {
+  window.localStorage.setItem('portfolio-language', 'es');
+  window.history.replaceState({}, '', '/?utm_source=linkedin&lang=en#projects');
+
+  render(<App />);
+
+  expect(screen.getByRole('link', { name: 'About' })).toBeInTheDocument();
+  expect(document.documentElement.lang).toBe('en');
+
+  const englishResume = screen.getByRole('link', { name: 'Resume (opens in new tab)' });
+  expect(englishResume).toHaveAttribute('href', expect.stringMatching(/ResumeSebastianEN/));
+
+  await userEvent.click(screen.getByRole('button', { name: 'Switch language to Spanish' }));
+
+  const params = new URLSearchParams(window.location.search);
+  expect(params.get('lang')).toBe('es');
+  expect(params.get('utm_source')).toBe('linkedin');
+  expect(window.location.hash).toBe('#projects');
+  expect(screen.getByRole('link', { name: 'CV (abre en nueva pestaña)' })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/ResumeSebastian\.pdf$/),
+  );
+});
+
+test('ignores an unsupported language query and replaces it with the detected language', () => {
+  window.history.replaceState({}, '', '/?lang=fr&utm_medium=cv');
+
+  render(<App />);
+
+  const params = new URLSearchParams(window.location.search);
+  expect(document.documentElement.lang).toBe('es');
+  expect(params.get('lang')).toBe('es');
+  expect(params.get('utm_medium')).toBe('cv');
 });
 
 test('toggles and persists the visual theme', async () => {
@@ -160,6 +201,8 @@ test('renders career progression, formation, projects, citizenship, and updated 
   expect(screen.getByRole('heading', { name: 'Authprocess' })).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Banking Sessions México' })).toBeInTheDocument();
   expect(screen.getByText(/Diseñé el modelo de unicidad de sesión cross-domain/)).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'SSO de Banco' })).toBeInTheDocument();
+  expect(screen.getByText(/Diseñé la estrategia de migración de los datos actuales/)).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Device Signing Recovery' })).toBeInTheDocument();
   expect(screen.getByText(/Definí los SLOs y el esquema de canary/)).toBeInTheDocument();
   expect(screen.getByRole('heading', { name: 'Proyectos personales' })).toBeInTheDocument();

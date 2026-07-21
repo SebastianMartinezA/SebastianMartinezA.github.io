@@ -24,7 +24,7 @@ import {
   GITHUB_URL,
   LANGUAGES,
   LINKEDIN_URL,
-  RESUME_URL,
+  RESUME_URLS,
   translations,
 } from './content/portfolioContent';
 
@@ -42,11 +42,20 @@ const getStoredValue = (key) => {
 };
 
 const getInitialLanguage = () => {
+  const urlLanguage = new URLSearchParams(window.location.search).get('lang');
+  if (urlLanguage && translations[urlLanguage]) return urlLanguage;
+
   const stored = getStoredValue(STORAGE_KEYS.language);
   if (stored && translations[stored]) return stored;
 
   const browserLanguage = navigator.language?.toLowerCase() || '';
   return browserLanguage.startsWith('en') ? 'en' : 'es';
+};
+
+const syncLanguageQuery = (language) => {
+  const url = new URL(window.location.href);
+  url.searchParams.set('lang', language);
+  window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`);
 };
 
 const getInitialTheme = () => {
@@ -126,6 +135,7 @@ const App = () => {
     document.documentElement.lang = language;
     document.title = t.meta.title;
     persistValue(STORAGE_KEYS.language, language);
+    syncLanguageQuery(language);
   }, [language, t.meta.title]);
 
   useEffect(() => {
@@ -427,11 +437,11 @@ const App = () => {
               </a>
               <a
                 className="button button-secondary"
-                href={RESUME_URL}
+                href={RESUME_URLS[language]}
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`${t.hero.resumeCta} (${t.controls.opensInNewTab})`}
-                onClick={() => trackEvent('resume_click', { placement: 'hero' })}
+                onClick={() => trackEvent('resume_click', { placement: 'hero', language })}
               >
                 <FiDownload aria-hidden="true" />
                 {t.hero.resumeCta}
